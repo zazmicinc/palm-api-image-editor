@@ -1,8 +1,8 @@
 {
   "name": "palm-api-image-editor",
   "displayName": "PaLM API Image Editor",
-  "description": "Convert images to WebP format. Elevate your development process with efficient and integrated image editing, enhancing both your coding and design endeavors.",
-  "version": "0.0.1",
+  "description": "Convert images to WebP format. Resize Image. Remove Image Background.",
+  "version": "0.0.3",
   "publisher": "Zazmic",
   "license": "MIT",
   "repository": {
@@ -27,7 +27,9 @@
     "webp",
     "seo optimisation",
     "graphics",
-    "palm api"
+    "palm api",
+    "resize",
+    "remove background"
   ],
   "activationEvents": [],
   "main": "./extension.js",
@@ -35,17 +37,44 @@
     "menus": {
       "explorer/context": [
         {
+          "submenu": "palm-api-image-editor.ImageEditor",
+          "group": "palm-api-image-editor"
+        }
+      ],
+      "palm-api-image-editor.ImageEditor": [
+        {
           "command": "palm-api-image-editor.ToWebP",
-          "when": "resourceScheme == 'file' && resourceFilename =~ /\\.(png|jpg|jpeg|gif|bmp|ico)$/i",
-          "title": "PaLM API: Convert Image to WebP",
-          "group": "PaLM API"
+          "when": "resourceScheme == 'file' && resourceFilename =~ /\\.(png|jpg|jpeg|gif|bmp|ico)$/i"
+        },
+        {
+          "command": "palm-api-image-editor.Resize",
+          "when": "resourceScheme == 'file' && resourceFilename =~ /\\.(png|jpg|jpeg|gif|bmp|ico)$/i"
+        },
+        {
+          "command": "palm-api-image-editor.RemBg",
+          "when": "resourceScheme == 'file' && resourceFilename =~ /\\.(png|jpg|jpeg|gif|bmp|ico)$/i"
         }
       ]
     },
+    "submenus": [
+      {
+        "command": "palm-api-image-editor.ImageEditor",
+        "id": "palm-api-image-editor.ImageEditor",
+        "label": "PaLM API Image Editor ..."
+      }
+    ],
     "commands": [
       {
         "command": "palm-api-image-editor.ToWebP",
-        "title": "PaLM API: Convert Image to WebP"
+        "title": "      Convert to WebP"
+      },
+      {
+        "command": "palm-api-image-editor.Resize",
+        "title": "   Resize Image"
+      },
+      {
+        "command": "palm-api-image-editor.RemBg",
+        "title": "Remove Background"
       }
     ]
   },

@@ -3,11 +3,11 @@ const fs = require("fs");
 const path = require('path');
 
 
-function createFile(uri, content) {
+function createFile(uri, content, suffix, mimeType) {
   const wsedit = new vscode.WorkspaceEdit();
   const pathInfo = path.parse(uri.fsPath);
   
-  const filePath = vscode.Uri.file(pathInfo.dir + `/${pathInfo.name}.webp`);
+  const filePath = vscode.Uri.file(pathInfo.dir + `/${pathInfo.name}${suffix}${mimeType}`);
   wsedit.createFile(filePath, { ignoreIfExists: true });
   
   vscode.workspace.applyEdit(wsedit);
